@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block content %}
+Main
+{% endblock %}
+<title>{% block title %} Объявление {% endblock %}</title>
+{% block body %}
+<body class="bg-light">
+<main>
+
+
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, editmessage in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ editmessage }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+
+            <div class="col-md-5">
+                {% for el in object_info %}
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <img src="{{ url_for('static', filename='bd_image/' + el[16]) }}" alt="no image display" style="width:550px;height:400px;" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Тип сделки </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[20]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Тип объекта</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[1]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Адрес</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[18]}}</p>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Количество комнат</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p> {{el[6]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Площадь</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[7]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Год постройки</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[10]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Тип материала</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[11]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Расстояние до метро, м</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[12]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Район</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[13]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Дата выставления на продажу</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[15]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Цена </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{el[8]}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <label>Описание: </label>
+                    </div>
+                    <div class="col-md-7">
+                        <p>{{el[14]}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% for el in user_info %}
+                {% if current_user.is_authenticated %}
+                <p class="hidden">Контактные данные для связи с продавцом:</p>
+                <p class="hidden">ФИО:{{el[0]}} {{el[1]}}, Телефон для связи: {{el[2]}}</p>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+
+</main>
+</body>
+{% endblock %}

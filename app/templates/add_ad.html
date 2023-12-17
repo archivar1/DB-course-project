@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+Main
+{% endblock %}
+<title>{% block title %} Создать объявление {% endblock %}</title>
+{% block body %}
+
+<body class="bg-light" xmlns="http://www.w3.org/1999/html">
+
+<main>
+
+        <form action="/add_ad" method="POST"  enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="container h-100">
+                <div class="row h-100 justify-content-center align-items-center">
+
+
+                    <div class="col-md-7 col-lg-8">
+                        <h4 class="mb-3">Новое объявление</h4>
+                        <form class="needs-validation" novalidate="">
+                            <div class="row g-3">
+
+                                <div class="col-md-5">
+                                    <label for="type_of_object" class="form-label">Тип продажи</label>
+                                    <select class="form-select" id="type_of_object" name="type_of_object" required="">
+                                        <option value="">Выберите...</option>
+                                        {% for option in options1 %}
+                                        <option value="{{ option[0] }}">{{ option[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-5">
+                                    <label for="type_of_deal" class="form-label">Тип сделки</label>
+                                    <select class="form-select" id="type_of_deal" name="type_of_deal" required="">
+                                        <option value="">Выберите...</option>
+                                        {% for option in options2 %}
+                                        <option value="{{ option[0] }}">{{ option[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                </div>
+
+                                <div class="col-12">
+                                    <div>{{ form.adress.label }} {{ form.adress(class="form-control form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.floar_num.label }} {{ form.floar_num(class="form-control
+                                        form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.room_num.label }} {{ form.room_num(class="form-control
+                                        form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.square.label }} {{ form.square(class="form-control form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.date_build.label }} {{ form.date_build(class="form-control
+                                        form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.material_type.label }} {{ form.material_type(class="form-control
+                                        form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.distance_to_subway.label }} {{
+                                        form.distance_to_subway(class="form-control form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.district.label }} {{ form.district(class="form-control
+                                        form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.price.label }} {{ form.price(class="form-control form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div>{{ form.description.label }} {{ form.description(class="form-control
+                                        form-control-lg") }}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>{{ form.image.label }} {{ form.image(class="form-control form-control-lg") }}
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+
+                                <button class="w-100 btn btn-primary btn-lg" type="submit">Создать объявление</button>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+</main>
+
+</body>
+{% endblock %}

@@ -1,0 +1,6 @@
+Flask==3.0.0
+Flask-Login==0.6.3
+python-dotenv~=1.0.0
+psycopg~=3.1.13
+wtforms~=3.1.1
+werkzeug~=3.0.1

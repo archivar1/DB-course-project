@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}c
+Main
+{% endblock %}
+
+{% block body %}
+<body class="bg-light">
+<title>{% block title %} Мои объявления {% endblock %}</title>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <h4 class="mb-3">Профиль</h4>
+            <div class="col-md-7">
+
+                <ul class="nav justify-content-left">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/account">Обо мне</a>
+                    </li>
+                    {% if current_user.role == 'realtor' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/my_object">Мои объявления</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/my_deal">Мои сделки</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="row row-cols-1 row-cols-2 g-3">
+                {% for el in user_object %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="{{ url_for('static', filename='bd_image/' + el[5]) }}" alt="no image display"
+                             style="width:635px;height:400px;">
+                        <div class="card-body">
+                            <h5 class="card-text">{{el[2]}} рублей </h5>
+                            <p class="card-text">{{el[0]}}-комн. {{el[1]}} м2, {{el[3]}} этаж </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary"
+                                       href="{{'/object/' ~ el[6] }}">Подробнее</a>
+                                    <a class="btn btn-sm btn-primary" href="{{'/edit_object/' ~ el[6] }}">Редактировать
+                                        объявление</a>
+                                    <form method="POST">
+                                        <button type="submit" name="delete_btn" value="{{ el[6] }}">Удалить
+                                        </button>
+                                    </form>
+
+
+                                </div>
+                                <small class="text-muted">Выложено {{el[4]}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor%}
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

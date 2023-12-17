@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}c
+Main
+{% endblock %}
+{% block body %}
+    <body class=" bg-light">
+    <div class="container">
+        <h1>Поиск</h1>
+        <form action="/search" method="POST">
+            <div class="col-12">
+                <div>{{ form.price_min.label }} {{ form.price_min(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div>{{ form.price_max.label }} {{ form.price_max(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div>{{ form.square_min.label }} {{ form.square_min(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div>{{ form.square_max.label }} {{ form.square_max(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="col-12">
+                <div>{{ form.room_num.label }} {{ form.room_num(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <button class="btn  btn-primary" type="submit">Поиск</button>
+        </form>
+
+        {% if results %}
+        <h2>Результат поиска</h2>
+        <ul>
+
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for result in results %}
+
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img src="{{ url_for('static', filename='bd_image/' + result[14]) }}" alt="no image display"
+                             style="width:420px;height:400px;">
+
+                        <div class="card-body">
+                            <h5 class="card-text">{{result[6]}} рублей </h5>
+                            <p class="card-text">{{result[4]}}-комн. {{result[5]}} м2, {{result[7]}} этаж </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-outline-secondary"
+                                       href="{{'/object/' ~ result[0] }}">Подробнее</a>
+                                </div>
+                                <small class="text-muted">Выложено {{result[13]}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>Ничего не найдено.</p>
+                {% endif %}
+            </div>
+
+        </ul>
+    </div>
+
+
+
+
+</body>
+{% endblock %}

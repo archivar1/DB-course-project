@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+Main
+{% endblock %}
+<title>{% block title %} Объявление {% endblock %}</title>
+{% block body %}
+<body class="bg-light">
+<main>
+
+
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, editmessage in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ editmessage }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+
+            <div class="col-md-5">
+                {% for ell in second_user %}
+                <div class="row">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>ФИО покупателя  </label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ell[0]}} {{ell[1]}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="row">
+                        {% for el in deal_info %}
+                        <div class="col-md-6">
+                            <label>ФИО продавца</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{el[8] }} {{el[9]}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label> Тип сделки</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{el[17]}}</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Итоговая цена</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p> {{el[6]}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Дата заключения сделки</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{el[5]}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}c
+Main
+{% endblock %}
+
+{% block body %}
+<body class="bg-light">
+<title>{% block title %} Добро пожаловать {% endblock %}</title>
+<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for el in objects %}
+
+        <div class="col">
+          <div class="card shadow-sm">
+
+          <img src="{{ url_for('static', filename='bd_image/' + el[14]) }}" alt="no image display" style="width:420px;height:400px;" >
+
+            <div class="card-body">
+              <h5 class="card-text">{{el[6]}} рублей  </h5>
+              <p class="card-text">{{el[4]}}-комн. {{el[5]}} м2, {{el[7]}} этаж   </p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a  class="btn btn-sm btn-outline-secondary" href="{{'/object/' ~ el[0] }}">Подробнее</a>
+                </div>
+                <small class="text-muted">Выложено {{el[13]}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor%}
+      </div>
+
+    </div>
+  </div>
+</body>
+{% endblock %}

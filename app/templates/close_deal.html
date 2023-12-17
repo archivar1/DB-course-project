@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+Main
+{% endblock %}
+<title>{% block title %} Регистрация{% endblock %}</title>
+{% block body %}
+<title>{{ Регистрация }}</title>
+<body class="bg-light">
+<div class="container">
+    <main>
+        <form  method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="rog g-5">
+
+                <h4 class="mb-3">Закрыть сделку </h4>
+                <div class="row g-3">
+                    <div class="message">{{ message }}</div>
+                    <div class="col-sm-6">
+                        <div>{{ form.user_second_login.label }} {{ form.user_second_login(class="form-control form-control-lg") }}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div>{{ form.price.label }} {{ form.price(class="form-control form-control-lg") }}
+                        </div>
+                    </div>
+
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Закрыть сделку</button>
+                    <div class="col-12">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </form>
+    </main>
+</div>
+</body>
+
+{% endblock %}
